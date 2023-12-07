@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { io, Socket } from 'socket.io-client';
 import api from './axios/api';
@@ -15,20 +15,28 @@ export default function Chat() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<IMessages[]>([]);
   const [message, setMessage] = useState('');
-  const [token] = useState(JSON.parse(localStorage.getItem('token')!));
+  const [token, setToken] = useState<string | null>(null);
 
   const router = useRouter();
   const bottomRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
-    if (!token) return router.push('/login');
+    const storedToken = localStorage.getItem('token');
+    if (!storedToken) {
+      router.push('/login');
+      return;
+    }
+    setToken(JSON.parse(storedToken));
+  }, [router]);
+
+  useEffect(() => {
+    if (!token) return;
 
     const fetchMessages = async () => {
       const { data } = await api.get('/messages');
-      setMessages(data)
-    }
+      setMessages(data);
+    };
     fetchMessages();
-
 
     const socketConnection = io('http://localhost:3001');
     setSocket(socketConnection);
@@ -39,21 +47,23 @@ export default function Chat() {
     });
 
     return () => {
-      socketConnection.disconnect();
+      if (socketConnection.connected) {
+        socketConnection.disconnect();
+      }
     };
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const scrollDown = () => {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }
-    scrollDown()
-  }, [messages])
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+    scrollDown();
+  }, [messages]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (message.trim() !== '') {
-      socket?.emit('message', { message, token });
+    if (message.trim() !== '' && socket) {
+      socket.emit('message', { message, token });
       setMessage('');
     }
   };
@@ -88,5 +98,5 @@ export default function Chat() {
         </form>
       </section>
     </main>
-  )
+  );
 }

@@ -1,11 +1,13 @@
 # PlayForACause
 
-O desafio foi implementar uma aplicação de chat usando node.js + typescript
+## Descrição do Projeto
 
-e as tecnologias nest.js, next,js, socket.io prisma postegresql redis, axios, Zod, ou alternativas para validação de objetos
+Este projeto consiste na implementação de uma aplicação de chat utilizando Node.js e TypeScript. As tecnologias principais incluem Nest.js, Next.js, Socket.io, Prisma, PostgreSQL, Axios e Zod (ou alternativas para validação de objetos).
 
-no meu codigo optei por não utilizar o nest.js e redis apesar de ter tentado muito pois estava tomando muito tempo
+Optei por não utilizar o Nest.js e o Redis devido ao tempo necessário para implementação, apesar de ter tentado incorporá-los.
 
-desenvolvi um chat realtime usando o next.js express, socket.io prisma e postgresql
+## Funcionalidades Principais
 
-# [Link do projeto aqui]('vercel')# PlayForACause
+Chat em tempo real desenvolvido com Next.js, Express, Socket.io, Prisma e PostgreSQL.
+
+# [Link do projeto aqui]('vercel')
