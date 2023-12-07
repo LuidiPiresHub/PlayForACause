@@ -10,4 +10,6 @@ Optei por não utilizar o Nest.js e o Redis devido ao tempo necessário para imp
 
 Chat em tempo real desenvolvido com Next.js, Express, Socket.io, Prisma e PostgreSQL.
 
-# [Link do projeto aqui]('https://play-for-a-cause-i5nxc1vul-luidipireshub.vercel.app/login')
+# Link do projeto aqui:
+
+https://play-for-a-cause-i5nxc1vul-luidipireshub.vercel.app
