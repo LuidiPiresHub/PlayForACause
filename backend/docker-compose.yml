@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: chat_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:6.2.5
+    ports:
+      - "6379:6379"
