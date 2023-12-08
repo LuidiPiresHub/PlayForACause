@@ -7,7 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "build": "tsc && prisma migrate deploy",
+    "build": "prisma migrate deploy && npx prisma generate && tsup src/server.ts",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts"
   },
