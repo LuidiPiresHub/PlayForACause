@@ -7,7 +7,7 @@
     "node": "18.x"
   },
   "scripts": {
-    "build": "npx prisma generate && npx prisma migrate deploy && npx prisma generate && npx tsc",
+    "vercel-build": "npx prisma migrate deploy && npx prisma generate && npx tsc",
     "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts"
   },
