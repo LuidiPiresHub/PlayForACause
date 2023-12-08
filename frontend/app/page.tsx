@@ -20,6 +20,7 @@ export default function Chat() {
   const router = useRouter();
   const bottomRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
+
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (!storedToken) {

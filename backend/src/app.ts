@@ -31,19 +31,19 @@ import { IMessage } from './interfaces/message.interface';
 //   return await redisClient.get('message');
 // }
 
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://play-for-a-cause.vercel.app'],
+};
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/users', routes.userRouter);
 app.use('/messages', routes.messageRouter);
 app.use(handleError)
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: 'http://localhost:3000',
-  }
-});
+const io = new Server(httpServer, { cors: corsOptions });
 
 io.on('connection', (socket) => {
   console.log('connected', socket.id);
