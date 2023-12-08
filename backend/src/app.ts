@@ -1,6 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
-const { createServer } = require('http');
+import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import routes from './routes'
